@@ -1,0 +1,22 @@
+*{
+    box-sizing: border-box;
+}
+body,
+html{
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+}
+.container{
+    width: 1200px;
+    margin: 0 auto;
+    padding: .5rem 0;
+    text-align: center;
+}
+.out__put{
+    display: inline-block;
+    width: 600px;
+    height: 600px;
+    border:1px solid #A0A0A0;
+}
