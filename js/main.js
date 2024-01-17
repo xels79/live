@@ -214,11 +214,19 @@ class App{
     }
 }
 
-const app = new App(10,10);
+const app = new App(9,9);
 const countInformer = document.getElementById('count_informer');
 let screenTimer = 0;
 function step(){
     setTimeout(()=>{
+        if (!screenTimer){
+            screenTimer = setTimeout(()=>{
+                window.requestAnimationFrame(()=>{
+                    countInformer.innerText=app.render();
+                    screenTimer = 0;
+                });
+            },15); 
+        }
         if (app.some()){
             app.evaluate();            
             step();
@@ -226,12 +234,6 @@ function step(){
             console.log('end');
         }
     },50);
-    setTimeout(()=>{
-        window.requestAnimationFrame(()=>{
-            countInformer.innerText=app.render();
-        });
-    },150);
-
 }
 
 console.log(app);
