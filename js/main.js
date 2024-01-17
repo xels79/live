@@ -100,7 +100,7 @@ class Ceil{
             }
         }
         if (empty.length){
-            const newPos = empty[Math.ceil(getRandomInRange(0, (empty.length - 1)*100000)/100000)];
+            const newPos = empty[Math.ceil(getRandomInRange(0, (empty.length - 1)*10000000000)/10000000000)];
             this.map[newPos.x][newPos.y].microbe = new Microbe(this.map[newPos.x][newPos.y]);
         }
     }
@@ -187,7 +187,7 @@ class App{
             this.map.push([]);
             for(let y = 0;y<this.h;y++){
                 let ceil;
-                if (getRandomInRange(0,1000)>900){
+                if (getRandomInRange(0,100000)>70000){
                     ceil = new Ceil(x,y,this.map,new Microbe(ceil));
                 }else{
                     ceil = new Ceil(x,y,this.map);
@@ -214,18 +214,24 @@ class App{
     }
 }
 
-const app = new App(8,8);
+const app = new App(10,10);
 const countInformer = document.getElementById('count_informer');
+let screenTimer = 0;
 function step(){
     setTimeout(()=>{
-        countInformer.innerText=app.render();
         if (app.some()){
             app.evaluate();            
             step();
         }else{
             console.log('end');
         }
-    },10);
+    },50);
+    setTimeout(()=>{
+        window.requestAnimationFrame(()=>{
+            countInformer.innerText=app.render();
+        });
+    },150);
+
 }
 
 console.log(app);
